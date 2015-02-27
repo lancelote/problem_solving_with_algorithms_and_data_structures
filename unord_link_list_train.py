@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, init_data):
+    def __init__(self, init_data=None):
         self.item = init_data
         self.next = None
 
@@ -31,6 +31,7 @@ class LinkedList:
     def print(self):
         _current = self.head
         while _current is not None:
+            # ToDo : fix to return string without printing
             print("[" + str(_current.get_item()) + "]")
             _current = _current.get_next()
 
@@ -44,6 +45,21 @@ class LinkedList:
             _current = _temp
         self.head = _previous
 
+    # ToDo : test speed
+    #
+    # Recursion reverse algorithm
+    #
+    # def reс_reverse(self, node):
+    #     if node.get_next() is None:
+    #         self.head = node
+    #         return node
+    #     new_node = self.reс_reverse(node.get_next())
+    #     new_node.set_next(node)
+    #     return node
+    #
+    # def reverse(self):
+    #     self.reс_reverse(self.head).set_next(None)
+
     def size(self):
         _current = self.head
         _size = 0
@@ -53,6 +69,12 @@ class LinkedList:
         return _size
 
     def search(self, item):
+        """
+        Search is the item in the list
+
+        :param item: item to found
+        :return: True or False
+        """
         _current = self.head
         while _current is not None:
             if _current.get_item() == item:
@@ -75,6 +97,13 @@ class LinkedList:
         return False
 
     def append(self, item):
+        """
+        Add item to the end of the list
+        Reverse of 'add'
+
+        :param item: item to add
+        :return: None
+        """
         # ToDo : fix to better speed
         _new_node = Node(item)
         _current = self.head
@@ -83,6 +112,12 @@ class LinkedList:
         _current.set_next(_new_node)
 
     def index(self, item):
+        """
+        Find position of the item in the list
+
+        :param item: item to found
+        :return: item position or False
+        """
         _current = self.head
         _count = 0
         while _current is not None:
@@ -93,6 +128,13 @@ class LinkedList:
         return False
 
     def insert(self, item, pos):
+        """
+        Insert item to the given position
+
+        :param item: item to insert
+        :param pos: position index
+        :return: None
+        """
         _current = self.head
         _previous = None
         _new_node = Node(item)
@@ -107,8 +149,17 @@ class LinkedList:
             _count += 1
         _previous.set_next(_new_node)
         _new_node.set_next(_current)
+        return
 
     def pop(self, pos):
+        """
+        Remove item at the given position
+
+        :param pos: item to remove position
+        :return: None
+        """
+
+        # ToDo : add default logic
         _current = self.head
         _previous = None
         _count = 0
@@ -122,14 +173,3 @@ class LinkedList:
         else:
             _previous.set_next(_current.get_next())
             return
-
-    # def reс_reverse(self, node):
-    #     if node.get_next() is None:
-    #         self.head = node
-    #         return node
-    #     new_node = self.reс_reverse(node.get_next())
-    #     new_node.set_next(node)
-    #     return node
-    #
-    # def reverse(self):
-    #     self.reс_reverse(self.head).set_next(None)

@@ -25,7 +25,7 @@ class NodeTest(unittest.TestCase):
 
 class LinkedListTest(unittest.TestCase):
 
-    # ToDo : complete
+    # ToDo : complete LinkedList class testing
     pass
 
 if __name__ == '__main__':

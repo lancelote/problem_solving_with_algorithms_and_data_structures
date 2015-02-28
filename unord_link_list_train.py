@@ -28,12 +28,12 @@ class LinkedList:
         _temp.set_next(self.head)
         self.head = _temp
 
-    def print(self):
+    def print_lst(self):
         _current = self.head
         while _current is not None:
-            # ToDo : fix to return string without printing
-            print("[" + str(_current.get_item()) + "]")
+            print("[" + str(_current.get_item()) + "]", end=" ")
             _current = _current.get_next()
+        print()
 
     def reverse(self):
         _current = self.head
@@ -45,7 +45,7 @@ class LinkedList:
             _current = _temp
         self.head = _previous
 
-    # ToDo : test speed
+    # ToDo : compare reverse test speed
     #
     # Recursion reverse algorithm
     #
@@ -104,7 +104,7 @@ class LinkedList:
         :param item: item to add
         :return: None
         """
-        # ToDo : fix to better speed
+        # ToDo : modify append method for better speed
         _new_node = Node(item)
         _current = self.head
         while _current.get_next() is not None:
@@ -159,7 +159,7 @@ class LinkedList:
         :return: None
         """
 
-        # ToDo : add default logic
+        # ToDo : add default logic for pop method
         _current = self.head
         _previous = None
         _count = 0

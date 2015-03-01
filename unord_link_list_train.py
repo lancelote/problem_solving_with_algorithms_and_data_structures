@@ -3,6 +3,9 @@ class Node:
         self.item = init_data
         self.next = None
 
+    def __eq__(self, other):
+        return self.get_next() == other.get_next() and self.get_item() == other.get_item()
+
     def set_item(self, new_data):
         self.item = new_data
 
@@ -20,6 +23,9 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def __eq__(self, other):
+        return self.print_lst() == other.print_lst()
+
     def is_empty(self):
         return self.head is None
 
@@ -30,10 +36,11 @@ class LinkedList:
 
     def print_lst(self):
         _current = self.head
+        _lst = ""
         while _current is not None:
-            print("[" + str(_current.get_item()) + "]", end=" ")
+            _lst += "[" + str(_current.get_item()) + "] "
             _current = _current.get_next()
-        print()
+        return _lst.rstrip()
 
     def reverse(self):
         _current = self.head

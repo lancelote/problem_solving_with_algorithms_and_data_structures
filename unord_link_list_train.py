@@ -90,6 +90,12 @@ class LinkedList:
         return False
 
     def remove(self, item):
+        """
+        Remove the first occurrence of the item from the list
+
+        :param item: item to remove
+        :return: None
+        """
         if self.head.get_item() == item:
             self.head = self.head.get_next()
             return True

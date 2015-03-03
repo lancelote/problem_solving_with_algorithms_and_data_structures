@@ -77,7 +77,7 @@ class LinkedList:
 
     def search(self, item):
         """
-        Search is the item in the list
+        Search if the item in the list
 
         :param item: item to found
         :return: True or False

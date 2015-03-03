@@ -94,9 +94,11 @@ class LinkedList:
         Remove the first occurrence of the item from the list
 
         :param item: item to remove
-        :return: None
+        :return: True if done or False
         """
-        if self.head.get_item() == item:
+        if self.head is None:
+            return False
+        elif self.head.get_item() == item:
             self.head = self.head.get_next()
             return True
         _previous = self.head

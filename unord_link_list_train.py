@@ -96,6 +96,8 @@ class LinkedList:
         :param item: item to remove
         :return: True if done or False
         """
+        # ToDo : use self.is_empty instead, check for all possibilities
+
         if self.head is None:
             return False
         elif self.head.get_item() == item:

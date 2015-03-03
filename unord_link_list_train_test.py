@@ -1,5 +1,8 @@
 import unittest
-from unord_link_list_train import Node, LinkedList
+from unord_link_list_train import Node
+from unord_link_list_train import LinkedList
+
+# ToDo : add tests for inadequate input
 
 
 class NodeTest(unittest.TestCase):
@@ -8,14 +11,14 @@ class NodeTest(unittest.TestCase):
         self.test_node = Node()
 
     def test_get_item(self):
-        self.assertEqual(self.test_node.get_item(), None)
+        self.assertIsNone(self.test_node.get_item())
 
     def test_set_item(self):
         self.test_node.set_item(0)
         self.assertEqual(self.test_node.get_item(), 0)
 
     def test_get_next(self):
-        self.assertEqual(self.test_node.get_next(), None)
+        self.assertIsNone(self.test_node.get_next())
 
     def test_set_next(self):
         next_node = Node(0)
@@ -25,8 +28,82 @@ class NodeTest(unittest.TestCase):
 
 class LinkedListTest(unittest.TestCase):
 
-    # ToDo : complete LinkedList class testing
-    pass
+    def setUp(self):
+        self.test_list = LinkedList()
+
+    def test_is_empty(self):
+        self.assertTrue(self.test_list.is_empty())
+
+    def test_add(self):
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.assertEqual(self.test_list.head.get_item(), 2)
+
+    def test_print_lst(self):
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.assertEqual(self.test_list.print_lst(), "[2] [1]")
+
+    def test_reverse(self):
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.test_list.reverse()
+        self.assertEqual(self.test_list.head.get_item(), 1)
+
+    def test_size(self):
+        self.assertEqual(self.test_list.size(), 0)
+        self.test_list.add(0)
+        self.assertEqual(self.test_list.size(), 1)
+        self.test_list.add(1)
+        self.assertEqual(self.test_list.size(), 2)
+
+    def test_search(self):
+        self.test_list.add(1)
+        self.assertFalse(self.test_list.search(0))
+        self.assertTrue(self.test_list.search(1))
+
+    def test_remove(self):
+        self.assertFalse(self.test_list.remove(1))
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.assertTrue(self.test_list.remove(2))
+        self.assertEqual(self.test_list.head.get_item(), 1)
+        self.test_list.remove(1)
+        self.assertIsNone(self.test_list.head)
+
+    def test_append(self):
+        self.test_list.add(1)
+        self.test_list.append(0)
+        self.test_list.append(-1)
+        self.assertEqual(self.test_list.head.get_item(), 1)
+
+    def test_index(self):
+        self.assertFalse(self.test_list.index(1))
+        self.test_list.add(0)
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.assertEqual(self.test_list.index(0), 2)
+        self.assertEqual(self.test_list.index(1), 1)
+        self.assertEqual(self.test_list.index(2), 0)
+
+    def test_insert(self):
+        self.test_list.insert(0, 0)
+        self.assertEqual(self.test_list.head.get_item(), 0)
+        self.test_list.insert(1, 0)
+        self.assertEqual(self.test_list.print_lst(), "[1] [0]")
+        self.test_list.insert(2, 1)
+        self.assertEqual(self.test_list.print_lst(), "[1] [2] [0]")
+
+    def test_pop(self):
+        self.test_list.add(0)
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.test_list.pop(1)
+        self.assertEqual(self.test_list.print_lst(), "[2] [0]")
+        self.test_list.pop(0)
+        self.assertEqual(self.test_list.print_lst(), "[0]")
+        self.test_list.pop(0)
+        self.assertIsNone(self.test_list.head)
 
 if __name__ == '__main__':
     unittest.main()

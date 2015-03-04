@@ -22,18 +22,36 @@ class Fraction:
         return str(self.num) + "/" + str(self.den)
 
     def __add__(self, other):
-        new_num = self.num*other.den + other.num*self.den
-        new_den = self.den*other.den
-        reduction = gcd(new_num, new_den)
-        return Fraction(new_num//reduction, new_den//reduction)
+        if other == 0:
+            return self
+        else:
+            new_num = self.num*other.den + other.num*self.den
+            new_den = self.den*other.den
+            reduction = gcd(new_num, new_den)
+            return Fraction(new_num//reduction, new_den//reduction)
 
     def __eq__(self, other):
-        return self.num == other.num and self.den == other.den
+        if other == 0:
+            return False
+        else:
+            return self.num == other.num and self.den == other.den
 
     def __sub__(self, other):
+        if other == 0:
+            return self
         new_num = self.num*other.den - other.num*self.den
         new_den = self.den*other.den
         if new_num == 0 or new_den == 0:
             return 0
-        reduction = gcd(new_num, new_den)
-        return Fraction(new_num//reduction, new_den//reduction)
+        else:
+            reduction = gcd(new_num, new_den)
+            return Fraction(new_num//reduction, new_den//reduction)
+
+    def __mul__(self, other):
+        if other == 0:
+            return 0
+        else:
+            new_num = self.num*other.num
+            new_den = self.den*other.den
+            reduction = gcd(new_num, new_den)
+            return Fraction(new_num//reduction, new_den//reduction)

@@ -53,3 +53,10 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(1, 2)*Fraction(3, 4), Fraction(3, 8))
         self.assertEqual(Fraction(3, 4)*Fraction(4, 6), Fraction(1, 2))
         self.assertEqual(Fraction(1, 2)*0, 0)
+
+    def test_truediv_returns_correct_result(self):
+        self.assertEqual(Fraction(1, 2)/Fraction(3, 4), Fraction(2, 3))
+
+    def test_truediv_raises_zerodivisionerror(self):
+        with self.assertRaises(ZeroDivisionError):
+            Fraction(1, 2)/0

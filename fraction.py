@@ -70,3 +70,9 @@ class Fraction:
             return self.num < 0
         else:
             return self.num*other.den < other.num*self.den
+
+    def __gt__(self, other):
+        if other == 0:
+            return self.num > 0
+        else:
+            return self.num*other.den > other.num*self.den

@@ -55,3 +55,12 @@ class Fraction:
             new_den = self.den*other.den
             reduction = gcd(new_num, new_den)
             return Fraction(new_num//reduction, new_den//reduction)
+
+    def __truediv__(self, other):
+        if other == 0:
+            raise ZeroDivisionError("Can not divide fraction by zero")
+        else:
+            new_num = self.num*other.den
+            new_den = self.den*other.num
+            reduction = gcd(new_num, new_den)
+            return Fraction(new_num//reduction, new_den//reduction)

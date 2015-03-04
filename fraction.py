@@ -64,3 +64,9 @@ class Fraction:
             new_den = self.den*other.num
             reduction = gcd(new_num, new_den)
             return Fraction(new_num//reduction, new_den//reduction)
+
+    def __lt__(self, other):
+        if other == 0:
+            return self.num < 0
+        else:
+            return self.num*other.den < other.num*self.den

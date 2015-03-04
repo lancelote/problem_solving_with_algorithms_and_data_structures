@@ -29,3 +29,11 @@ class Fraction:
 
     def __eq__(self, other):
         return self.num == other.num and self.den == other.den
+
+    def __sub__(self, other):
+        new_num = self.num*other.den - other.num*self.den
+        new_den = self.den*other.den
+        if new_num == 0 or new_den == 0:
+            return 0
+        reduction = gcd(new_num, new_den)
+        return Fraction(new_num//reduction, new_den//reduction)

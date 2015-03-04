@@ -34,9 +34,14 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(self.test_fraction.__str__(), "1/2")
 
     def test_add_returns_correct_result(self):
-        self.assertEqual((self.test_fraction + Fraction(2, 5)).__str__(), "9/10")
-        self.assertEqual((self.test_fraction + Fraction(1, 4)).__str__(), "3/4")
+        self.assertEqual((Fraction(1, 2) + Fraction(2, 5)), Fraction(9, 10))
+        self.assertEqual((Fraction(1, 2) + Fraction(1, 4)), Fraction(3, 4))
 
     def test_eq_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) == Fraction(1, 2))
         self.assertFalse(Fraction(1, 2) == Fraction(3, 4))
+
+    def test_sub_returns_correct_result(self):
+        self.assertEqual(Fraction(1, 2) - Fraction(1, 2), 0)
+        self.assertEqual(Fraction(1, 4) - Fraction(1, 2), Fraction(-1, 4))
+        self.assertEqual(Fraction(1, 2) - Fraction(1, 4), Fraction(1, 4))

@@ -62,5 +62,7 @@ class FractionTest(unittest.TestCase):
             Fraction(1, 2)/0
 
     def test_lt_returns_correct_result(self):
-        self.assertEqual(Fraction(1, 4) < Fraction(1, 2))
-        self.assertEqual(Fraction(-1, 2) < 0)
+        self.assertTrue(Fraction(1, 4) < Fraction(1, 2))
+        self.assertFalse(Fraction(1, 2) < Fraction(1, 4))
+        self.assertTrue(Fraction(-1, 2) < 0)
+        self.assertFalse(Fraction(1, 2) < 0)

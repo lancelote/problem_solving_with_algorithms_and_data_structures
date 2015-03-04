@@ -60,3 +60,7 @@ class FractionTest(unittest.TestCase):
     def test_truediv_raises_zerodivisionerror(self):
         with self.assertRaises(ZeroDivisionError):
             Fraction(1, 2)/0
+
+    def test_lt_returns_correct_result(self):
+        self.assertEqual(Fraction(1, 4) < Fraction(1, 2))
+        self.assertEqual(Fraction(-1, 2) < 0)

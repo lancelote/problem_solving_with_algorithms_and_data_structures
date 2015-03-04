@@ -5,7 +5,7 @@ from fraction import gcd
 
 class GcdTest(unittest.TestCase):
 
-    def gcd_returns_correct_value(self):
+    def gcd_returns_correct_result(self):
         self.assertEqual(gcd(20, 10), 10)
         self.assertEqual(gcd(17, 13), 1)
         self.assertEqual(gcd(18, 24), 6)
@@ -30,9 +30,13 @@ class FractionTest(unittest.TestCase):
         self.assertRaises(ValueError, Fraction, 0, 1)
         self.assertRaises(ValueError, Fraction, 1, 0)
 
-    def test_str_returns_correct_value(self):
+    def test_str_returns_correct_result(self):
         self.assertEqual(self.test_fraction.__str__(), "1/2")
 
-    def test_add_returns_correct_value(self):
+    def test_add_returns_correct_result(self):
         self.assertEqual((self.test_fraction + Fraction(2, 5)).__str__(), "9/10")
         self.assertEqual((self.test_fraction + Fraction(1, 4)).__str__(), "3/4")
+
+    def test_eq_returns_correct_result(self):
+        self.assertTrue(Fraction(1, 2) == Fraction(1, 2))
+        self.assertFalse(Fraction(1, 2) == Fraction(3, 4))

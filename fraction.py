@@ -26,3 +26,6 @@ class Fraction:
         new_den = self.den*other.den
         reduction = gcd(new_num, new_den)
         return Fraction(new_num//reduction, new_den//reduction)
+
+    def __eq__(self, other):
+        return self.num == other.num and self.den == other.den

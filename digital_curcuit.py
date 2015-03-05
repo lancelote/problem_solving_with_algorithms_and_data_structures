@@ -65,4 +65,9 @@ class AndGate(BinaryGate):
         BinaryGate.__init__(self, n)
 
     def perform_gate_logic(self):
-        pass
+        a = self.get_pin_a()
+        b = self.get_pin_b()
+        if a == 1 and b == 1:
+            return 1
+        else:
+            return 0

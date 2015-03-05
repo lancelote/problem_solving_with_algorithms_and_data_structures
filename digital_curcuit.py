@@ -85,3 +85,16 @@ class OrGate(BinaryGate):
             return 0
         else:
             return 1
+
+
+class NotGate(UnaryGate):
+
+    def __init__(self, n):
+        UnaryGate.__init__(self, n)
+
+    def perform_gate_logic(self):
+        a = self.get_pin()
+        if a == 0:
+            return 1
+        else:
+            return 0

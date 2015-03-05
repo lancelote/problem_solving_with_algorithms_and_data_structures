@@ -1,5 +1,5 @@
 import unittest
-from digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate
+from digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate, OrGate
 
 
 class LogicGateTest(unittest.TestCase):
@@ -101,3 +101,21 @@ class AndGateTest(unittest.TestCase):
         self.assertEqual(self.test_and_gate.perform_gate_logic(), 0)
         self.test_and_gate.set_pin_a(1)
         self.assertEqual(self.test_and_gate.perform_gate_logic(), 1)
+
+
+class OrGateTest(unittest.TestCase):
+
+    def setUp(self):
+        self.test_or_gate = OrGate("Label")
+
+    def test_perform_gate_logic_returns_correct_result(self):
+        self.test_or_gate.set_pin_a(0)
+        self.test_or_gate.set_pin_b(0)
+        self.assertEqual(self.test_or_gate.perform_gate_logic(), 0)
+        self.test_or_gate.set_pin_a(1)
+        self.assertEqual(self.test_or_gate.perform_gate_logic(), 1)
+        self.test_or_gate.set_pin_a(0)
+        self.test_or_gate.set_pin_b(1)
+        self.assertEqual(self.test_or_gate.perform_gate_logic(), 1)
+        self.test_or_gate.set_pin_a(1)
+        self.assertEqual(self.test_or_gate.perform_gate_logic(), 1)

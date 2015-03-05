@@ -1,5 +1,5 @@
 import unittest
-from digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate, OrGate, NotGate
+from digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate, OrGate, NotGate, Connector
 
 
 class LogicGateTest(unittest.TestCase):
@@ -59,6 +59,17 @@ class BinaryGateTest(unittest.TestCase):
         self.test_binary_gate.set_pin_b(1)
         self.assertEqual(self.test_binary_gate.get_pin_b(), 1)
 
+    def test_set_empty_pin_works_correct(self):
+        self.test_binary_gate.set_empty_pin(0)
+        self.assertEqual(self.test_binary_gate.get_pin_a(), 0)
+        self.test_binary_gate.set_empty_pin(1)
+        self.assertEqual(self.test_binary_gate.get_pin_b(), 1)
+
+    def test_set_empty_pin_raises_runtimeerror_if_no_empty_pin(self):
+        self.test_binary_gate.set_empty_pin(0)
+        self.test_binary_gate.set_empty_pin(1)
+        self.assertRaises(RuntimeError, self.test_binary_gate.set_empty_pin, 1)
+
 
 class UnaryGateTest(unittest.TestCase):
 
@@ -83,6 +94,14 @@ class UnaryGateTest(unittest.TestCase):
         self.assertEqual(self.test_unary_gate.get_pin(), 0)
         self.test_unary_gate.set_pin(1)
         self.assertEqual(self.test_unary_gate.get_pin(), 1)
+
+    def test_set_empty_pin_works_correct(self):
+        self.test_unary_gate.set_empty_pin(0)
+        self.assertEqual(self.test_unary_gate.get_pin(), 0)
+
+    def test_set_empty_pin_raises_runtimeerror_if_no_empty_pin(self):
+        self.test_unary_gate.set_empty_pin(0)
+        self.assertRaises(RuntimeError, self.test_unary_gate.set_empty_pin, 1)
 
 
 class AndGateTest(unittest.TestCase):
@@ -131,3 +150,23 @@ class NotGateTest(unittest.TestCase):
         self.assertEqual(self.test_not_gate.perform_gate_logic(), 1)
         self.test_not_gate.set_pin(1)
         self.assertEqual(self.test_not_gate.perform_gate_logic(), 0)
+
+
+class ConnectorTest(unittest.TestCase):
+
+    def test_init_works_correct(self):
+        # NorGate
+        g1 = OrGate("G1")
+        g1.set_pin_a(1)
+        g1.set_pin_b(0)
+        g2 = NotGate("G2")
+        c1 = Connector(g1, g2)
+        self.assertEqual(g2.get_output(), 0)
+
+        # NandGate
+        g3 = AndGate("G3")
+        g3.set_pin_a(1)
+        g3.set_pin_b(0)
+        g4 = NotGate("G4")
+        c2 = Connector(g3, g4)
+        self.assertEqual(g4.get_output(), 1)

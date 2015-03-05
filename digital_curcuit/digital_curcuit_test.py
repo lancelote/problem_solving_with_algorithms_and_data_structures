@@ -1,5 +1,5 @@
 import unittest
-from digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate, OrGate, NotGate, Connector
+from digital_curcuit.digital_curcuit import LogicGate, BinaryGate, UnaryGate, AndGate, OrGate, NotGate, Connector
 
 
 class LogicGateTest(unittest.TestCase):

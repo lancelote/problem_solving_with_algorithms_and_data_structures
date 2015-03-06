@@ -1,6 +1,5 @@
 import unittest
-from fraction import Fraction
-from fraction import gcd
+from fraction.fraction import Fraction, gcd
 
 
 class GcdTest(unittest.TestCase):
@@ -72,3 +71,9 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(1, 4) > Fraction(1, 2))
         self.assertTrue(Fraction(1, 2) > 0)
         self.assertFalse(Fraction(-1, 2) > 0)
+
+    def test_get_num_returns_correct_value(self):
+        self.assertEqual(Fraction(1, 2).get_num(), 1)
+
+    def test_get_den_returns_correct_value(self):
+        self.assertEqual(Fraction(1, 2).get_den(), 2)

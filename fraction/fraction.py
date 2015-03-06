@@ -76,3 +76,9 @@ class Fraction:
             return self.num > 0
         else:
             return self.num*other.den > other.num*self.den
+
+    def get_num(self):
+        return self.num
+
+    def get_den(self):
+        return self.den

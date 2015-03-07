@@ -2,7 +2,7 @@ import unittest
 from insertion_sort.insertion_sort import insertion_sort
 
 
-class SelectionSortTest(unittest.TestCase):
+class InsertionSortTest(unittest.TestCase):
 
     def test_insertion_sort_works_correct(self):
         lst = [5, 4, 3, 2, 1]

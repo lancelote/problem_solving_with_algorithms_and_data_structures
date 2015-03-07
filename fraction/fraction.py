@@ -13,8 +13,9 @@ class Fraction:
             elif top == 0 or bottom == 0:
                 raise ValueError("Denominator and numerator should not be equal to zero")
             else:
-                self.num = top
-                self.den = bottom
+                reduction = gcd(top, bottom)
+                self.num = top//reduction
+                self.den = bottom//reduction
         else:
             raise TypeError("Wrong input type: {} and {}".format(type(top), type(bottom)))
 
@@ -27,8 +28,7 @@ class Fraction:
         else:
             new_num = self.num*other.den + other.num*self.den
             new_den = self.den*other.den
-            reduction = gcd(new_num, new_den)
-            return Fraction(new_num//reduction, new_den//reduction)
+            return Fraction(new_num, new_den)
 
     def __eq__(self, other):
         if other == 0:

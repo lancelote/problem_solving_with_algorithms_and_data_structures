@@ -20,7 +20,7 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(self.test_fraction.den, 2)
 
     def test_init_raises_typeerror_if_not_int(self):
-        self.assertRaises(TypeError, self.test_fraction, "Hello", "World")
+        self.assertRaises(TypeError, Fraction, "Hello", "World")
 
     def test_init_raise_valueerror_if_den_is_negative(self):
         self.assertRaises(ValueError, Fraction, 1, -1)

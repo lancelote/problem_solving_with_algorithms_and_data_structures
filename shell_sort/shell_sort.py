@@ -14,6 +14,6 @@ def shell_sort(lst):
     gap = len(lst)//2
 
     while gap > 0:
-        for start_pos in range(gap):
-            gap_insertion_sort(lst, start_pos, gap)
-            gap //= 2
+        for start in range(gap):
+            gap_insertion_sort(lst, start, gap)
+        gap //= 2

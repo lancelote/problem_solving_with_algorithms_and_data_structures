@@ -36,6 +36,27 @@ class Fraction:
         else:
             return self.num == other.num and self.den == other.den
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        if other == 0:
+            return self.num < 0
+        else:
+            return self.num*other.den < other.num*self.den
+
+    def __le__(self, other):
+        return self.__lt__(other) or self.__eq__(other)
+
+    def __gt__(self, other):
+        if other == 0:
+            return self.num > 0
+        else:
+            return self.num*other.den > other.num*self.den
+
+    def __ge__(self, other):
+        return self.__gt__(other) or self.__eq__(other)
+
     def __sub__(self, other):
         if other == 0:
             return self
@@ -64,18 +85,6 @@ class Fraction:
             new_den = self.den*other.num
             reduction = gcd(new_num, new_den)
             return Fraction(new_num//reduction, new_den//reduction)
-
-    def __lt__(self, other):
-        if other == 0:
-            return self.num < 0
-        else:
-            return self.num*other.den < other.num*self.den
-
-    def __gt__(self, other):
-        if other == 0:
-            return self.num > 0
-        else:
-            return self.num*other.den > other.num*self.den
 
     def get_num(self):
         return self.num

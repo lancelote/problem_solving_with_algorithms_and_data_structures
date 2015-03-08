@@ -1,6 +1,5 @@
 import unittest
-from unord_link_list_train import Node
-from unord_link_list_train import LinkedList
+from unordered_linked_list.unord_link_list_train import Node, LinkedList
 
 # ToDo : add tests for inadequate input
 
@@ -30,6 +29,17 @@ class LinkedListTest(unittest.TestCase):
 
     def setUp(self):
         self.test_list = LinkedList()
+
+    def test_eq_returns_correct_result(self):
+        lst1 = LinkedList()
+        lst1.add(1)
+        lst1.add(2)
+        lst2 = LinkedList()
+        lst2.add(1)
+        lst2.add(2)
+        self.assertTrue(lst1 == lst2)
+        lst2.add(3)
+        self.assertFalse(lst1 == lst2)
 
     def test_is_empty(self):
         self.assertTrue(self.test_list.is_empty())
@@ -70,6 +80,11 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(self.test_list.head.get_item(), 1)
         self.test_list.remove(1)
         self.assertIsNone(self.test_list.head)
+        self.test_list.add(1)
+        self.test_list.add(2)
+        self.test_list.add(3)
+        self.assertTrue(self.test_list.remove(1))
+        self.assertEqual(self.test_list.print_lst(), "[3] [2]")
 
     def test_append(self):
         self.test_list.add(1)

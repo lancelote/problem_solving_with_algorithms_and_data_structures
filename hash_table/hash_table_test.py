@@ -54,10 +54,19 @@ class HashTableTest(unittest.TestCase):
         self.assertEqual(self.test_hash_table.get(55), "pig")
         self.assertEqual(self.test_hash_table.get(20), "chicken")
         self.assertIsNone(self.test_hash_table.get(18))
+        self.test_hash_table.put(18, "antelope")
+        self.test_hash_table.put(19, "sparrow")
+        self.assertIsNone(self.test_hash_table.get(21))
 
     def test_getitem_returns_correct_value(self):
         self.assertEqual(self.test_hash_table[54], "cat")
 
     def test_set_item_works_correct(self):
-        self.test_hash_table[18] = "monkey"
-        self.assertEqual(self.test_hash_table[18], "monkey")
+        set_test_hash_table = HashTable()
+        set_test_hash_table[18] = "monkey"
+        self.assertEqual(set_test_hash_table[18], "monkey")
+        set_test_hash_table[54] = "elephant"
+        self.assertEqual(set_test_hash_table[54], "elephant")
+        set_test_hash_table[65] = "pigeon"
+        set_test_hash_table[65] = "crocodile"
+        self.assertEqual(set_test_hash_table[65], "crocodile")

@@ -1,4 +1,5 @@
 class Node:
+
     def __init__(self, init_data=None):
         self.item = init_data
         self.next = None
@@ -20,6 +21,7 @@ class Node:
 
 
 class LinkedList:
+
     def __init__(self):
         self.head = None
 
@@ -97,21 +99,22 @@ class LinkedList:
         :return: True if done or False
         """
         # ToDo : use self.is_empty instead, check for all possibilities
-
+        found = False
         if self.head is None:
-            return False
+            found = False
         elif self.head.get_item() == item:
             self.head = self.head.get_next()
-            return True
-        _previous = self.head
-        _current = self.head.get_next()
-        while _current is not None:
-            if _current.get_item() == item:
-                _previous.set_next(_current.get_next())
-                return True
-            _previous = _current
-            _current = _current.get_next()
-        return False
+            found = True
+        else:
+            _previous = self.head
+            _current = self.head.get_next()
+            while _current is not None:
+                if _current.get_item() == item:
+                    _previous.set_next(_current.get_next())
+                    found = True
+                _previous = _current
+                _current = _current.get_next()
+        return found
 
     def append(self, item):
         """

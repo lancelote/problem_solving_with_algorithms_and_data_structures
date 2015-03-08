@@ -11,3 +11,6 @@ class QuickSortTest(unittest.TestCase):
         lst = [1, 3, 2, 5, 4]
         quick_sort(lst)
         self.assertEqual(lst, [1, 2, 3, 4, 5])
+        lst = [3, 1, 4, 2, 5]
+        quick_sort(lst)
+        self.assertEqual(lst, [1, 2, 3, 4, 5])

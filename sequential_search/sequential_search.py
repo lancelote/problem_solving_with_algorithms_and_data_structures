@@ -1,7 +1,4 @@
 def sequential_search(lst, item):
-    """
-    O(n)
-    """
     pos = 0
     found = False
 

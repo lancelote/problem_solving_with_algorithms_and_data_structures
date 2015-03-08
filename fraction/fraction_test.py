@@ -65,6 +65,11 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(-1, 2) != Fraction(-1, 2))
         self.assertTrue(Fraction(-1, 2) != Fraction(1, 2))
 
+    def test_ne_returns_correct_result(self):
+        self.assertFalse(Fraction(1, 2) != Fraction(1, 2))
+        self.assertTrue(Fraction(1, 2) != Fraction(3, 4))
+        self.assertTrue(Fraction(1, 2) != 0)
+
     def test_sub_returns_correct_result(self):
         self.assertEqual(Fraction(1, 2) - Fraction(1, 2), 0)
         self.assertEqual(Fraction(1, 4) - Fraction(1, 2), Fraction(-1, 4))
@@ -97,6 +102,11 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(1, 2) <= Fraction(1, 4))
         self.assertTrue(Fraction(-1, 2) <= Fraction(-1, 2))
 
+    def test_le_returns_correct_result(self):
+        self.assertTrue(Fraction(1, 2) <= Fraction(1, 2))
+        self.assertTrue(Fraction(1, 4) <= Fraction(1, 2))
+        self.assertFalse(Fraction(1, 2) <= Fraction(1, 4))
+
     def test_gt_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) > Fraction(1, 4))
         self.assertFalse(Fraction(1, 4) > Fraction(1, 2))
@@ -112,6 +122,11 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(-1, 2) >= 0)
         self.assertTrue(Fraction(-1, 4) >= Fraction(-1, 2))
         self.assertTrue(Fraction(1, 2) >= Fraction(-1, 2))
+
+    def test_ge_returns_correct_result(self):
+        self.assertTrue(Fraction(1, 2) >= Fraction(1, 2))
+        self.assertTrue(Fraction(1, 2) >= Fraction(1, 4))
+        self.assertFalse(Fraction(1, 4) >= Fraction(1, 2))
 
     def test_get_num_returns_correct_value(self):
         self.assertEqual(Fraction(1, 2).get_num(), 1)

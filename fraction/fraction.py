@@ -8,10 +8,16 @@ class Fraction:
 
     def __init__(self, top, bottom):
         if type(top) == int and type(bottom) == int:
-            if bottom < 0:
-                raise ValueError("Negative fraction should have negative numerator not denominator")
-            elif top == 0 or bottom == 0:
+            if top == 0 or bottom == 0:
                 raise ValueError("Denominator and numerator should not be equal to zero")
+            elif top < 0 and bottom < 0:
+                reduction = gcd(abs(top), abs(bottom))
+                self.num = abs(top)//reduction
+                self.den = abs(bottom)//reduction
+            elif bottom < 0:
+                reduction = gcd(top, abs(bottom))
+                self.num = -top//reduction
+                self.den = abs(bottom)//reduction
             else:
                 reduction = gcd(top, bottom)
                 self.num = top//reduction
@@ -24,11 +30,15 @@ class Fraction:
 
     def __add__(self, other):
         if other == 0:
-            return self
+            result = self
         else:
             new_num = self.num*other.den + other.num*self.den
             new_den = self.den*other.den
-            return Fraction(new_num, new_den)
+            if new_num == 0:
+                result = 0
+            else:
+                result = Fraction(new_num, new_den)
+        return result
 
     def __eq__(self, other):
         if other == 0:
@@ -62,7 +72,7 @@ class Fraction:
             return self
         new_num = self.num*other.den - other.num*self.den
         new_den = self.den*other.den
-        if new_num == 0 or new_den == 0:
+        if new_num == 0:
             return 0
         else:
             reduction = gcd(new_num, new_den)

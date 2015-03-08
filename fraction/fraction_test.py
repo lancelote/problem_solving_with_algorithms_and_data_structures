@@ -18,12 +18,18 @@ class FractionTest(unittest.TestCase):
     def test_init_works_correct(self):
         self.assertEqual(self.test_fraction.num, 1)
         self.assertEqual(self.test_fraction.den, 2)
+        self.test_fraction = Fraction(-1, 2)
+        self.assertEqual(self.test_fraction.num, -1)
+        self.assertEqual(self.test_fraction.den, 2)
+        self.test_fraction = Fraction(-1, -2)
+        self.assertEqual(self.test_fraction.num, 1)
+        self.assertEqual(self.test_fraction.den, 2)
+        self.test_fraction = Fraction(1, -2)
+        self.assertEqual(self.test_fraction.num, -1)
+        self.assertEqual(self.test_fraction.den, 2)
 
     def test_init_raises_typeerror_if_not_int(self):
         self.assertRaises(TypeError, Fraction, "Hello", "World")
-
-    def test_init_raise_valueerror_if_den_is_negative(self):
-        self.assertRaises(ValueError, Fraction, 1, -1)
 
     def test_init_raise_valueerror_if_den_or_num_is_zero(self):
         self.assertRaises(ValueError, Fraction, 0, 1)
@@ -31,21 +37,33 @@ class FractionTest(unittest.TestCase):
 
     def test_str_returns_correct_result(self):
         self.assertEqual(self.test_fraction.__str__(), "1/2")
+        self.test_fraction = Fraction(-1, 2)
+        self.assertEqual(self.test_fraction.__str__(), "-1/2")
+        self.test_fraction = Fraction(1, -2)
+        self.assertEqual(self.test_fraction.__str__(), "-1/2")
+        self.test_fraction = Fraction(-1, -2)
+        self.assertEqual(self.test_fraction.__str__(), "1/2")
 
     def test_add_returns_correct_result(self):
         self.assertEqual(Fraction(1, 2) + Fraction(2, 5), Fraction(9, 10))
         self.assertEqual(Fraction(1, 2) + Fraction(1, 4), Fraction(3, 4))
         self.assertEqual(Fraction(1, 2) + 0, Fraction(1, 2))
+        self.assertEqual(Fraction(-1, 2) + Fraction(1, 2), 0)
+        self.assertEqual(Fraction(-1, 4) + Fraction(-1, 4), Fraction(-1, 2))
 
     def test_eq_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) == Fraction(1, 2))
         self.assertFalse(Fraction(1, 2) == Fraction(3, 4))
         self.assertFalse(Fraction(1, 2) == 0)
+        self.assertTrue(Fraction(-1, 2) == Fraction(-1, 2))
+        self.assertFalse(Fraction(-1, 2) == Fraction(1, 2))
 
     def test_ne_returns_correct_result(self):
         self.assertFalse(Fraction(1, 2) != Fraction(1, 2))
         self.assertTrue(Fraction(1, 2) != Fraction(3, 4))
         self.assertTrue(Fraction(1, 2) != 0)
+        self.assertFalse(Fraction(-1, 2) != Fraction(-1, 2))
+        self.assertTrue(Fraction(-1, 2) != Fraction(1, 2))
 
     def test_sub_returns_correct_result(self):
         self.assertEqual(Fraction(1, 2) - Fraction(1, 2), 0)
@@ -70,22 +88,30 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(1, 2) < Fraction(1, 4))
         self.assertTrue(Fraction(-1, 2) < 0)
         self.assertFalse(Fraction(1, 2) < 0)
+        self.assertTrue(Fraction(-1, 2) < Fraction(-1, 4))
+        self.assertFalse(Fraction(1, 2) < Fraction(-1, 2))
 
     def test_le_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) <= Fraction(1, 2))
         self.assertTrue(Fraction(1, 4) <= Fraction(1, 2))
         self.assertFalse(Fraction(1, 2) <= Fraction(1, 4))
+        self.assertTrue(Fraction(-1, 2) <= Fraction(-1, 2))
 
     def test_gt_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) > Fraction(1, 4))
         self.assertFalse(Fraction(1, 4) > Fraction(1, 2))
         self.assertTrue(Fraction(1, 2) > 0)
         self.assertFalse(Fraction(-1, 2) > 0)
+        self.assertTrue(Fraction(-1, 4) > Fraction(-1, 2))
+        self.assertFalse(Fraction(-1, 2) > Fraction(1, 2))
 
     def test_ge_returns_correct_result(self):
         self.assertTrue(Fraction(1, 2) >= Fraction(1, 2))
         self.assertTrue(Fraction(1, 2) >= Fraction(1, 4))
         self.assertFalse(Fraction(1, 4) >= Fraction(1, 2))
+        self.assertFalse(Fraction(-1, 2) >= 0)
+        self.assertTrue(Fraction(-1, 4) >= Fraction(-1, 2))
+        self.assertTrue(Fraction(1, 2) >= Fraction(-1, 2))
 
     def test_get_num_returns_correct_value(self):
         self.assertEqual(Fraction(1, 2).get_num(), 1)

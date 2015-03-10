@@ -40,6 +40,9 @@ class Fraction:
                 result = Fraction(new_num, new_den)
         return result
 
+    def __iadd__(self, other):
+        return self.__add__(other)
+
     def __eq__(self, other):
         if other == 0:
             return False

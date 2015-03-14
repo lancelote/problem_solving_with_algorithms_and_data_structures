@@ -28,6 +28,9 @@ class Fraction:
     def __str__(self):
         return str(self.num) + "/" + str(self.den)
 
+    def __repr__(self):
+        return "Fraction(%s, %s)" % (self.num, self.den)
+
     def __add__(self, other):
         if other == 0:
             result = self

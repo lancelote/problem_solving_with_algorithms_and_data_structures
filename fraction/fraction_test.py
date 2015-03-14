@@ -44,6 +44,11 @@ class FractionTest(unittest.TestCase):
         self.test_fraction = Fraction(-1, -2)
         self.assertEqual(self.test_fraction.__str__(), "1/2")
 
+    def test_repr_returns_correct_result(self):
+        self.assertEqual(Fraction(1, 2).__repr__(), "Fraction(1, 2)")
+        self.assertEqual(Fraction(-1, 2).__repr__(), "Fraction(-1, 2)")
+        self.assertEqual(Fraction(1, -2).__repr__(), "Fraction(-1, 2)")
+
     def test_add_returns_correct_result(self):
         self.assertEqual(Fraction(1, 2) + Fraction(2, 5), Fraction(9, 10))
         self.assertEqual(Fraction(1, 2) + Fraction(1, 4), Fraction(3, 4))

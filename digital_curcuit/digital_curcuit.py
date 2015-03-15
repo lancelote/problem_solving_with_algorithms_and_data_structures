@@ -114,6 +114,22 @@ class NotGate(UnaryGate):
             return 0
 
 
+class XorGate(BinaryGate):
+
+    def __init__(self, n):
+        BinaryGate.__init__(self, n)
+
+    def perform_gate_logic(self):
+        a = self.get_pin_a()
+        b = self.get_pin_b()
+        if a == 0 and b == 0:
+            return 0
+        elif a == 1 and b == 1:
+            return 0
+        else:
+            return 1
+
+
 class NandGate(AndGate):
 
     def __init__(self, n):

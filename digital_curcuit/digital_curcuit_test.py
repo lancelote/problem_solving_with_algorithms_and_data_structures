@@ -1,7 +1,8 @@
 import unittest
-from digital_curcuit.digital_curcuit import LogicGate
+from digital_curcuit.digital_curcuit import LogicGate, Connector
 from digital_curcuit.digital_curcuit import BinaryGate, UnaryGate
-from digital_curcuit.digital_curcuit import AndGate, OrGate, NotGate, NandGate, Connector
+from digital_curcuit.digital_curcuit import AndGate, OrGate, NotGate
+from digital_curcuit.digital_curcuit import NandGate, NorGate
 
 
 class LogicGateTest(unittest.TestCase):
@@ -169,6 +170,23 @@ class NandGateTest(unittest.TestCase):
         self.assertEqual(self.test_nand_gate.perform_gate_logic(), 0)
         self.test_nand_gate.set_pin_a(0)
         self.assertEqual(self.test_nand_gate.perform_gate_logic(), 1)
+
+
+class NorGateTest(unittest.TestCase):
+
+    def setUp(self):
+        self.test_nor_gate = NorGate("Label")
+
+    def test_perform_gate_logic_returns_correct_result(self):
+        self.test_nor_gate.set_pin_a(0)
+        self.test_nor_gate.set_pin_b(0)
+        self.assertEqual(self.test_nor_gate.perform_gate_logic(), 1)
+        self.test_nor_gate.set_pin_a(1)
+        self.assertEqual(self.test_nor_gate.perform_gate_logic(), 0)
+        self.test_nor_gate.set_pin_b(1)
+        self.assertEqual(self.test_nor_gate.perform_gate_logic(), 0)
+        self.test_nor_gate.set_pin_a(0)
+        self.assertEqual(self.test_nor_gate.perform_gate_logic(), 0)
 
 
 class ConnectorTest(unittest.TestCase):

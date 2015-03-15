@@ -123,6 +123,15 @@ class NandGate(AndGate):
         return int(not AndGate.perform_gate_logic(self))
 
 
+class NorGate(OrGate):
+
+    def __init__(self, n):
+        OrGate.__init__(self, n)
+
+    def perform_gate_logic(self):
+        return int(not OrGate.perform_gate_logic(self))
+
+
 class Connector():
     """
     Used as a connection between gates

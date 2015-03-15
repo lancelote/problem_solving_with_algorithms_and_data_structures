@@ -164,11 +164,11 @@ class NandGateTest(unittest.TestCase):
         self.test_nand_gate.set_pin_b(0)
         self.assertEqual(self.test_nand_gate.perform_gate_logic(), 1)
         self.test_nand_gate.set_pin_a(1)
-        self.assertEqual(self.test_nand_gate.perform_gate_logic(), 0)
+        self.assertEqual(self.test_nand_gate.perform_gate_logic(), 1)
         self.test_nand_gate.set_pin_b(1)
         self.assertEqual(self.test_nand_gate.perform_gate_logic(), 0)
         self.test_nand_gate.set_pin_a(0)
-        self.assertEqual(self.test_nand_gate.perform_gate_logic(), 0)
+        self.assertEqual(self.test_nand_gate.perform_gate_logic(), 1)
 
 
 class ConnectorTest(unittest.TestCase):

@@ -114,18 +114,13 @@ class NotGate(UnaryGate):
             return 0
 
 
-class NandGate(BinaryGate):
+class NandGate(AndGate):
 
     def __init__(self, n):
-        BinaryGate.__init__(self, n)
+        AndGate.__init__(self, n)
 
     def perform_gate_logic(self):
-        a = self.get_pin_a()
-        b = self.get_pin_b()
-        if a == 0 and b == 0:
-            return 1
-        else:
-            return 0
+        return int(not AndGate.perform_gate_logic(self))
 
 
 class Connector():

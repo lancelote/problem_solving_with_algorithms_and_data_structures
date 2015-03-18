@@ -1,3 +1,6 @@
+import itertools
+
+
 def anagram_1(s1, s2):
     lst = list(s2)
     pos1 = 0
@@ -37,5 +40,15 @@ def anagram_2(s1, s2):
             pos += 1
         else:
             matches = False
+
+    return matches
+
+
+def anagram_3(s1, s2):
+    matches = True
+    permutations = [''.join(i) for i in itertools.permutations(s1)]
+
+    if s2 not in permutations:
+        matches = False
 
     return matches

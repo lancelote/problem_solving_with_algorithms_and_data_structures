@@ -148,6 +148,32 @@ class NorGate(OrGate):
         return int(not OrGate.perform_gate_logic(self))
 
 
+class HalfAdder(XorGate, AndGate):
+
+    def __init__(self, n):
+        XorGate.__init__(self, n)
+        AndGate.__init__(self, n)
+        self.xor_gate = XorGate(n)
+        self.and_gate = AndGate(n)
+
+    def set_pin_a(self, n):
+        if n != 0 and n != 1:
+            raise ValueError("Pin A should be 0 or 1")
+        else:
+            self.xor_gate.pin_a = n
+            self.and_gate.pin_a = n
+
+    def set_pin_b(self, n):
+        if n != 0 and n != 1:
+            raise ValueError("Pin B should be 0 or 1")
+        else:
+            self.xor_gate.pin_b = n
+            self.and_gate.pin_b = n
+
+    def return_gates(self):
+        return self.xor_gate, self.and_gate
+
+
 class Connector():
     """
     Used as a connection between gates

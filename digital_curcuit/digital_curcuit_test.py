@@ -3,6 +3,7 @@ from digital_curcuit.digital_curcuit import LogicGate, Connector
 from digital_curcuit.digital_curcuit import BinaryGate, UnaryGate
 from digital_curcuit.digital_curcuit import AndGate, OrGate, NotGate, XorGate
 from digital_curcuit.digital_curcuit import NandGate, NorGate
+from digital_curcuit.digital_curcuit import HalfAdder
 
 
 class LogicGateTest(unittest.TestCase):
@@ -204,6 +205,32 @@ class NorGateTest(unittest.TestCase):
         self.assertEqual(self.test_nor_gate.perform_gate_logic(), 0)
         self.test_nor_gate.set_pin_a(0)
         self.assertEqual(self.test_nor_gate.perform_gate_logic(), 0)
+
+
+class HalfAdderTest(unittest.TestCase):
+
+    def setUp(self):
+        self.test_half_adder = HalfAdder("Label")
+        self.xor_gate, self.and_gate = self.test_half_adder.return_gates()
+
+    def test_set_pin_raises_error_if_not_0_or_1(self):
+        self.assertRaises(ValueError, self.test_half_adder.set_pin_a, "Hello")
+        self.assertRaises(ValueError, self.test_half_adder.set_pin_b, "World")
+
+    def test_return_gates_works_correct(self):
+        self.test_half_adder.set_pin_a(0)
+        self.test_half_adder.set_pin_b(0)
+        self.assertEqual(self.xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(self.and_gate.perform_gate_logic(), 0)
+        self.test_half_adder.set_pin_a(1)
+        self.assertEqual(self.xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(self.and_gate.perform_gate_logic(), 0)
+        self.test_half_adder.set_pin_b(1)
+        self.assertEqual(self.xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(self.and_gate.perform_gate_logic(), 1)
+        self.test_half_adder.set_pin_a(0)
+        self.assertEqual(self.xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(self.and_gate.perform_gate_logic(), 0)
 
 
 class ConnectorTest(unittest.TestCase):

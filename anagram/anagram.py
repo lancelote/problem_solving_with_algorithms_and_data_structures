@@ -20,3 +20,22 @@ def anagram_1(s1, s2):
 
         pos1 += 1
     return still_ok
+
+
+def anagram_2(s1, s2):
+    lst1 = list(s1)
+    lst2 = list(s2)
+
+    lst1.sort()
+    lst2.sort()
+
+    pos = 0
+    matches = True
+
+    while pos < len(s1) and matches:
+        if lst1[pos] == lst2[pos]:
+            pos += 1
+        else:
+            matches = False
+
+    return matches

@@ -56,6 +56,12 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(-1, 2) + Fraction(1, 2), 0)
         self.assertEqual(Fraction(-1, 4) + Fraction(-1, 4), Fraction(-1, 2))
 
+    def test_radd_returns_correct_result(self):
+        self.assertEqual(0 + Fraction(1, 2), Fraction(1, 2))
+
+    def test_radd_raises_notimplementederror(self):
+        self.assertRaises(NotImplementedError, self.test_fraction.__radd__, 1)
+
     def test_iadd_returns_correct_result(self):
         self.test_fraction += Fraction(2, 5)
         self.assertEqual(self.test_fraction, Fraction(9, 10))

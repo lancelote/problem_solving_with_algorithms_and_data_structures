@@ -43,6 +43,12 @@ class Fraction:
                 result = Fraction(new_num, new_den)
         return result
 
+    def __radd__(self, other):
+        if other == 0:
+            return self
+        else:
+            raise NotImplementedError("This type of addition is not implemented")
+
     def __iadd__(self, other):
         return self.__add__(other)
 

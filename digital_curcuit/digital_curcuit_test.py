@@ -3,7 +3,7 @@ from digital_curcuit.digital_curcuit import LogicGate, Connector
 from digital_curcuit.digital_curcuit import BinaryGate, UnaryGate
 from digital_curcuit.digital_curcuit import AndGate, OrGate, NotGate, XorGate
 from digital_curcuit.digital_curcuit import NandGate, NorGate
-from digital_curcuit.digital_curcuit import HalfAdder
+from digital_curcuit.digital_curcuit import HalfAdder, FullAdder
 
 
 class LogicGateTest(unittest.TestCase):
@@ -213,7 +213,7 @@ class HalfAdderTest(unittest.TestCase):
         self.test_half_adder = HalfAdder("Label")
         self.xor_gate, self.and_gate = self.test_half_adder.return_gates()
 
-    def test_set_pin_raises_error_if_not_0_or_1(self):
+    def test_set_pin_raises_valueerror_if_not_0_or_1(self):
         self.assertRaises(ValueError, self.test_half_adder.set_pin_a, "Hello")
         self.assertRaises(ValueError, self.test_half_adder.set_pin_b, "World")
 
@@ -231,6 +231,57 @@ class HalfAdderTest(unittest.TestCase):
         self.test_half_adder.set_pin_a(0)
         self.assertEqual(self.xor_gate.perform_gate_logic(), 1)
         self.assertEqual(self.and_gate.perform_gate_logic(), 0)
+
+
+class FullAdderTest(unittest.TestCase):
+
+    def setUp(self):
+        self.test_full_adder = FullAdder("Label")
+
+    def test_set_pin_raises_valueerror_if_not_0_or_1(self):
+        self.assertRaises(ValueError, self.test_full_adder.set_pin_a, "Hello")
+        self.assertRaises(ValueError, self.test_full_adder.set_pin_b, "Awesome")
+        self.assertRaises(ValueError, self.test_full_adder.set_pin_c, "World")
+
+    def test_return_gates_works_correct(self):
+        self.test_full_adder.set_pin_a(0)
+        self.test_full_adder.set_pin_b(0)
+        self.test_full_adder.set_pin_c(0)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(or_gate.perform_gate_logic(), 0)
+        self.test_full_adder.set_pin_a(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(or_gate.perform_gate_logic(), 0)
+        self.test_full_adder.set_pin_a(0)
+        self.test_full_adder.set_pin_b(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(or_gate.perform_gate_logic(), 0)
+        self.test_full_adder.set_pin_a(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(or_gate.perform_gate_logic(), 1)
+        self.test_full_adder.set_pin_a(0)
+        self.test_full_adder.set_pin_b(0)
+        self.test_full_adder.set_pin_c(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(or_gate.perform_gate_logic(), 0)
+        self.test_full_adder.set_pin_a(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(or_gate.perform_gate_logic(), 1)
+        self.test_full_adder.set_pin_a(0)
+        self.test_full_adder.set_pin_b(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 0)
+        self.assertEqual(or_gate.perform_gate_logic(), 1)
+        self.test_full_adder.set_pin_a(1)
+        xor_gate, or_gate = self.test_full_adder.return_gates()
+        self.assertEqual(xor_gate.perform_gate_logic(), 1)
+        self.assertEqual(or_gate.perform_gate_logic(), 1)
 
 
 class ConnectorTest(unittest.TestCase):

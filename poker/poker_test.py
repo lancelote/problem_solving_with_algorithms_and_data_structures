@@ -1,5 +1,5 @@
 import unittest
-from poker.poker import Card
+from poker.poker import Card, Pack
 
 
 class CardTest(unittest.TestCase):
@@ -20,3 +20,15 @@ class CardTest(unittest.TestCase):
 
     def test_get_suit_returns_correct_result(self):
         self.assertEqual(self.test_card.get_suit(), "hearts")
+
+
+class PackTest(unittest.TestCase):
+
+    def setUp(self):
+        self.pack = Pack()
+        self.ideal_pack = [(value, suit)
+                           for value in range(2, 15)
+                           for suit in ("spades", "hearts", "diamonds", "clubs")]
+
+    def test_cards_method_returns_correct_result(self):
+        self.assertListEqual(self.pack.cards(), self.ideal_pack)

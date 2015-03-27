@@ -19,3 +19,14 @@ class Card():
 
     def get_suit(self):
         return self.suit
+
+
+class Pack():
+
+    def __init__(self):
+        self.cards_list = [(value, suit)
+                           for value in range(2, 15)
+                           for suit in ("spades", "hearts", "diamonds", "clubs")]
+
+    def cards(self):
+        return self.cards_list

@@ -1,5 +1,5 @@
 import unittest
-from poker.poker import Card, Pack
+from poker.poker import Card, Pack, Party
 
 
 class CardTest(unittest.TestCase):
@@ -32,3 +32,22 @@ class PackTest(unittest.TestCase):
 
     def test_cards_method_returns_correct_result(self):
         self.assertListEqual(self.pack.cards(), self.ideal_pack)
+
+
+class PartyTest(unittest.TestCase):
+
+    def setUp(self):
+        self.test_party = Party("Name", 100)
+
+    def test_get_name_returns_correct_result(self):
+        self.assertEqual(self.test_party.get_name(), "Name")
+
+    def test_get_wallet_returns_correct_value(self):
+        self.assertEqual(self.test_party.get_wallet(), 100)
+
+    def test_change_wallet(self):
+        self.test_party.change_wallet(10)
+        self.assertEqual(self.test_party.get_wallet(), 110)
+        self.test_party.change_wallet(-20)
+        self.assertEqual(self.test_party.get_wallet(), 90)
+        self.assertRaises(ValueError, self.test_party.change_wallet, -100)

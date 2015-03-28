@@ -1,7 +1,7 @@
 # ♠, ♥, ♦, ♣
 
 
-class Card():
+class Card:
 
     def __init__(self, value, suit):
         if value not in range(2, 15):
@@ -21,7 +21,7 @@ class Card():
         return self.suit
 
 
-class Pack():
+class Pack:
 
     def __init__(self):
         self.cards_list = [(value, suit)
@@ -30,3 +30,22 @@ class Pack():
 
     def cards(self):
         return self.cards_list
+
+
+class Party:
+
+    def __init__(self, name, money):
+        self.name = name
+        self.wallet = money
+
+    def get_name(self):
+        return self.name
+
+    def get_wallet(self):
+        return self.wallet
+
+    def change_wallet(self, change):
+        if change + self.wallet < 0:
+            raise ValueError("Wallet cannot be negative")
+        else:
+            self.wallet += change

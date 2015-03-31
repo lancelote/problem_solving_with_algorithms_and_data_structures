@@ -39,6 +39,12 @@ class PartyTest(unittest.TestCase):
     def setUp(self):
         self.test_party = Party("Name", 100)
 
+    def test_init_raises_valueerror_if_money_0_or_negative(self):
+        with self.assertRaises(ValueError):
+            Party("Name", 0)
+        with self.assertRaises(ValueError):
+            Party("Name", -1)
+
     def test_get_name_returns_correct_result(self):
         self.assertEqual(self.test_party.get_name(), "Name")
 

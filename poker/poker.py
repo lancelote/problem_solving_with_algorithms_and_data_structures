@@ -22,6 +22,9 @@ class Card:
 
 
 class Pack:
+    """
+    Pack of cards: 15 cards by 4 suits
+    """
 
     def __init__(self):
         self.cards_list = [(value, suit)
@@ -33,10 +36,16 @@ class Pack:
 
 
 class Party:
+    """
+    General class represents a party in the game: player, bot and table
+    """
 
     def __init__(self, name, money):
         self.name = name
-        self.wallet = money
+        if money <= 0:
+            raise ValueError("Party wallet cannot be 0 or negative")
+        else:
+            self.wallet = money
 
     def get_name(self):
         return self.name
